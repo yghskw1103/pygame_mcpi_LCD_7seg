@@ -61,12 +61,17 @@ clock = pygame.time.Clock()
 font1 = pygame.freetype.Font(os.path.join(FONTS_DIR, 'natumemozi.ttf'), 48)
 
 lcd1 = LcdFontPG(screen)
-lcd1.set_col(block_size=7, block_intv=8, color_on=COLOR_01, color_off=GRAY)
+lcd1.set_col(block_size=7, block_intv=8, color_on=COLOR_01, color_off=DARK_GRAY)
 lcd1.set_row(x_org=5, y_org=5, col_intv=6)
 
 lcd2 = LcdFontPG(screen)
-lcd2.set_col(block_size=4, block_intv=5, color_on=COLOR_02, color_off=GRAY)
+lcd2.set_col(block_size=4, block_intv=5, color_on=COLOR_02, color_off=DARK_GRAY)
 lcd2.set_row(x_org=3, y_org=39, col_intv=6)
+
+
+lcd3 = LcdFontPG(screen)
+lcd3.set_col(block_size=3, block_intv=4, color_on=COLOR_03, color_off=GRAY)
+lcd3.set_row(x_org=0, y_org=0, col_intv=6)
 
 
 def disp_one_character(pos_x, pos_y):
@@ -79,7 +84,7 @@ def disp_one_character(pos_x, pos_y):
         pos_y (int): virtical position, 垂直位置
     """
 
-    chr_code = int(pos_x / 8) % 3
+    chr_code = int(pos_x / 8) % 10
     if chr_code < 10:
         chr_code += ord("0")
     else:
@@ -147,6 +152,7 @@ def infinite_loop():
 
         disp_one_character(pos_x, pos_y)
         lcd2.update_message("0123456789")
+        lcd3.update_message("98765aa210")
 
         pygame.display.update()
         clock.tick(60)
