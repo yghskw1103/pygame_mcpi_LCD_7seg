@@ -197,7 +197,11 @@ def infinite_loop():
         # show ASCII code of the key pressed
         lcd4.update_message(hex(key_code))
         # clock style display
-        lcd_time.update_message(str(dt_now.hour) + ':' + str(dt_now.minute) + ':' + str(dt_now.second))
+        lcd_time.update_message(
+            str(dt_now.hour)
+            + ':' + str(dt_now.minute)
+            + ':' + str(dt_now.second)
+            )
 
         pygame.display.update()
         clock.tick(60)
