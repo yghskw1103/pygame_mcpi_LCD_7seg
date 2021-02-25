@@ -16,13 +16,13 @@
 
 import colorsys  # colorsys.hsv_to_rgb()
 import os        # os.path.dirname(), os.path.join()
+from datetime import datetime
 
 import pygame
 import pygame.freetype
 from pygame.locals import Rect
 
 from lcdfontdisp import LcdFontDisplay
-
 
 # ルートからアプリのディレクトリ（このファイル自身が居る）までのpathを取得
 APP_DIR = os.path.dirname(__file__)
@@ -187,6 +187,8 @@ def infinite_loop():
 
         screen.fill(GRAY)
 
+        dt_now = datetime.now()
+
         disp_one_character(pos_x, pos_y)
         # sample display
         lcd2.update_message("0123456789abcdef 12:34")
@@ -195,7 +197,7 @@ def infinite_loop():
         # show ASCII code of the key pressed
         lcd4.update_message(hex(key_code))
         # clock style display
-        lcd_time.update_message("12:34")
+        lcd_time.update_message(str(dt_now.hour) + ':' + str(dt_now.minute) + ':' + str(dt_now.second))
 
         pygame.display.update()
         clock.tick(60)
